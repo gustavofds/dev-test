@@ -7,10 +7,22 @@ exports.getAll = async () => {
   return users;
 };
 
-exports.getUserByEmail = async (email) => {
-  const users = await User.findOne({ email });
+exports.getUserById = async (id) => {
+  if(!ObjectId.isValid(id)) return null;
 
-  return users;
+  const db = await connection();
+
+  const user = await db.collection('users').findOne({ _id: ObjectId(id) });
+
+  return user || null;
+};
+
+exports.getUserByEmail = async (email) => {
+  const db = await connection();
+
+  const user = await db.findOne({ email });
+
+  return user || null;
 }
 
 exports.createUser = async({ fullName, email, password }) => {
