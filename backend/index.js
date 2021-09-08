@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const userRouter = require('./routes/userRouter');
 
 dotenv.config();
 
@@ -11,6 +12,10 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/api/users', userRouter);
+
+app.all('*', (req, res) => {
+  res.status(404).json({ message: 'Not found' });
+});
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
