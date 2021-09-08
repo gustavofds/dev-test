@@ -9,12 +9,12 @@ The goal of the project is to develop a Single Page Application for an Open Bank
 - Balance
 
 # Technologies Used
-## Front-end
+### Front-end
 
-## Back-end
+### Back-end
 
 
 # Evaluation
-## How I'd like to be evaluated
+### How I'd like to be evaluated
 
-## Topics that I wish to exclude from evaluation
+### Topics that I wish to exclude from evaluation
