@@ -28,6 +28,9 @@ exports.createUser = async ({ fullName, email, password }) => {
     if (emailAlreadyExists) return { message: 'Enter a valid email'};
 
     const user = await User.createUser({ fullName, email, password });
+
+    return user;
+
   } catch(err) {
     console.log(err);
     return { message: err.message };

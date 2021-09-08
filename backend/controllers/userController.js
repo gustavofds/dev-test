@@ -15,3 +15,13 @@ exports.getUserById = async (req, res) => {
 
   res.status(200).json({ user });
 };
+
+exports.registerUser = async (req, res) => {
+  const { fullName, email, password } = req.body;
+
+  const user = await userService.createUser({ fullName, email, password });
+
+  if (user.message) return res.status(400).json({ message: user.message });
+
+  res.status(201).json({ user });
+}

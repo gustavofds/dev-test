@@ -22,7 +22,7 @@ exports.getUserById = async (id) => {
 exports.getUserByEmail = async (email) => {
   const db = await connection();
 
-  const user = await db.findOne({ email });
+  const user = await db.collection('users').findOne({ email });
 
   return user || null;
 }
