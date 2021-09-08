@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 
 exports.getAll = async () => {
@@ -33,8 +34,7 @@ exports.createUser = async({ fullName, email, password }) => {
 
   return {
     id: user.insertedId,
-    firstName,
-    lastName,
+    fullName,
     email,
   };
 };
