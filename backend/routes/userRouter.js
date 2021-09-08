@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.route('/').get(userController.getAllUsers);
 
+router.get('/:id', userController.getUserById);
+
 module.exports = router;
