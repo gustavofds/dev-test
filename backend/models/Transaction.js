@@ -30,3 +30,18 @@ exports.getAllByUserId = async (id) => {
 
   return transactions;
 };
+
+exports.createTransaction = async({ userId, type, value }) => {
+  if(!ObjectId.isValid(userId)) return null;
+
+  const db = await connection();
+
+  const transaction = await db.collection('transactions').insertOne({ userId, type, value });
+
+  return {
+    id: transaction.insertedId,
+    userId,
+    type,
+    value,
+  };
+};
