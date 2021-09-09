@@ -4,6 +4,6 @@ const transactionController = require('../controllers/transactionController');
 const router = express.Router();
 
 router.route('/')
-  .get(transactionController.getAllTransactions)
+  .get(transactionController.getAllTransactions, transactionController.getAllByUserId)
 
 module.exports = router;

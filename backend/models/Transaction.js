@@ -20,3 +20,13 @@ exports.getAll = async () => {
 
   return users;
 };
+
+exports.getAllByUserId = async (id) => {
+  if(!ObjectId.isValid(id)) return null;
+
+  const db = await connection();
+
+  const transactions = await db.collection('transactions').find({ userId: ObjectId(id) }).toArray();
+
+  return transactions;
+};
