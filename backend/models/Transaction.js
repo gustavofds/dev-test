@@ -53,7 +53,7 @@ exports.getBalance = async(userId) => {
 
   const [balance] = await db.collection('transactions').aggregate([
     {
-      $match: { userId: ObjectId('613920df202008b80675de7a') },
+      $match: { userId: ObjectId(userId) },
     },
     {
       $group: {
@@ -64,7 +64,7 @@ exports.getBalance = async(userId) => {
     {
       $project: { _id: 0 },
     }
-  ]);
+  ]).toArray();
 
   return balance;
 }

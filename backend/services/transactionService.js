@@ -48,3 +48,9 @@ exports.createTransaction = async ({ userId, type, value }) => {
     return { message: err.message };
   }
 };
+
+exports.getBalance = async (userId) => {
+  const balance = await Transaction.getBalance(userId);
+
+  return balance;
+};

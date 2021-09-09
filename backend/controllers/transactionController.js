@@ -29,3 +29,11 @@ exports.createTransaction = async (req, res) => {
 
   res.status(201).json({ transaction });
 }
+
+exports.getBalance = async (req, res) => {
+  const { id } = req.params;
+
+  const { balance } = await transactionService.getBalance(id);
+
+  res.status(200).json({ userId: id, balance });
+};
