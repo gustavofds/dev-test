@@ -36,3 +36,13 @@ exports.createUser = async ({ fullName, email, password }) => {
     return { message: err.message };
   }
 };
+
+exports.loginService = async ({ email, password }) => {
+  if (!email || !password) return { message: 'Invalid data'};
+
+  const user = await User.getUserByEmail(email);
+
+  if (user && user.password === password) return { userId: user._id, login: true };
+
+  return { message: 'Incorrect email or password', login: false};
+};
