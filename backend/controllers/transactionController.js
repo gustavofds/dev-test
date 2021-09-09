@@ -19,3 +19,13 @@ exports.getAllByUserId = async (req, res) => {
 
   res.status(200).json({ transactions });
 };
+
+exports.createTransaction = async (req, res) => {
+  const { userId, type, value } = req.body;
+
+  const transaction = await transactionService.createTransaction({ userId, type, value });
+
+  if (transaction.message) return res.status(400).json({ message: transaction.message });
+
+  res.status(201).json({ transaction });
+}

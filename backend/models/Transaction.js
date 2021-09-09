@@ -36,7 +36,7 @@ exports.createTransaction = async({ userId, type, value }) => {
 
   const db = await connection();
 
-  const transaction = await db.collection('transactions').insertOne({ userId, type, value });
+  const transaction = await db.collection('transactions').insertOne({ userId: ObjectId(userId), type, value });
 
   return {
     id: transaction.insertedId,
