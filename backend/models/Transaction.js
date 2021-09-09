@@ -45,3 +45,26 @@ exports.createTransaction = async({ userId, type, value }) => {
     value,
   };
 };
+
+exports.getBalance = async(userId) => {
+  if(!ObjectId.isValid(userId)) return null;
+
+  const db = await connection();
+
+  const [balance] = await db.collection('transactions').aggregate([
+    {
+      $match: { userId: ObjectId('613920df202008b80675de7a') },
+    },
+    {
+      $group: {
+        _id: null,
+        balance: { $sum: "$value" },
+      }
+    },
+    {
+      $project: { _id: 0 },
+    }
+  ]);
+
+  return balance;
+}
