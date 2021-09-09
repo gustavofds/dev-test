@@ -25,3 +25,13 @@ exports.registerUser = async (req, res) => {
 
   res.status(201).json({ user });
 }
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await userService.loginService({ email, password });
+
+  if (user.message) return res.status(401).json({ message: user.message });
+
+  res.status(200).json(user);
+};
